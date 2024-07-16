@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateSerieHandler(ctx *gin.Context) {
+func ListContentsHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Post",
+		"msg": "Get All",
 	})
 }

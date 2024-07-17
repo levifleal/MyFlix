@@ -1,12 +1,15 @@
 package router
 
 import (
-
 	"github.com/gin-gonic/gin"
 	"github.com/levifleal/MyFlix/handler"
 )
 
 func initRoutes(r *gin.Engine) {
+
+	//initialize handler
+	handler.InitHandler()
+
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/serie", handler.ShowContentHandler)

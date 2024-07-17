@@ -19,10 +19,10 @@ func NewLogger(p string) *Logger {
 	logger := log.New(writer, p, log.Ldate|log.Ltime)
 
 	return &Logger{
-		debug:  log.New(writer, "Debbug: ", logger.Flags()),
-		info:   log.New(writer, "Info: ", logger.Flags()),
-		warn:   log.New(writer, "Warning: ", logger.Flags()),
-		err:    log.New(writer, "Error: ", logger.Flags()),
+		debug:  log.New(writer, "[ Debbug ] ", logger.Flags()),
+		info:   log.New(writer, "[ Info ] ", logger.Flags()),
+		warn:   log.New(writer, "[ Warning ] ", logger.Flags()),
+		err:    log.New(writer, "[ Error ] ", logger.Flags()),
 		writer: writer,
 	}
 }
@@ -47,18 +47,18 @@ func (l *Logger) Error(v ...interface{}) {
 
 //create Formated enable Logs
 
-func (l *Logger) Debugf(format string,v ...interface{}) {
-	l.debug.Printf(format,v...)
+func (l *Logger) Debugf(format string, v ...interface{}) {
+	l.debug.Printf(format, v...)
 }
 
-func (l *Logger) Infof(format string,v ...interface{}) {
-	l.info.Printf(format,v...)
+func (l *Logger) Infof(format string, v ...interface{}) {
+	l.info.Printf(format, v...)
 }
 
-func (l *Logger) Warnf(format string,v ...interface{}) {
-	l.warn.Printf(format,v...)
+func (l *Logger) Warnf(format string, v ...interface{}) {
+	l.warn.Printf(format, v...)
 }
 
-func (l *Logger) Errorf(format string,v ...interface{}) {
-	l.err.Printf(format,v...)
+func (l *Logger) Errorf(format string, v ...interface{}) {
+	l.err.Printf(format, v...)
 }

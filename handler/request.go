@@ -31,7 +31,7 @@ func (r *CreateContentRequest) Validate() error {
 		return errParamIsRequired("desc", "string")
 	}
 	if r.ContentType == "" {
-		return errParamIsRequired("contentType", "string")	
+		return errParamIsRequired("contentType", "string")
 	}
 	if r.Genre == "" {
 		return errParamIsRequired("genre", "string")
@@ -41,4 +41,20 @@ func (r *CreateContentRequest) Validate() error {
 	}
 
 	return nil
+}
+
+type updateContentRequest struct {
+	Title       string    `json:"title"`
+	Desc        string    `json:"desc"`
+	ContentType string    `json:"contentType"`
+	Genre       string    `json:"genre"`
+	ReleaseDate time.Time `json:"releaseDate"`
+}
+
+func (r *updateContentRequest) Validate() error {
+	if !r.ReleaseDate.IsZero() || r.ContentType != "" || r.Desc != "" || r.Genre != "" || r.Title != "" {
+		return nil
+	}
+
+	return fmt.Errorf("at least one valid field must be provided")
 }

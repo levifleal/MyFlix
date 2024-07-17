@@ -12,7 +12,7 @@ type Content struct {
 	Desc         string
 	ContentType  string
 	Genre        string
-	RealeaseDate time.Time
+	ReleaseDate time.Time
 }
 
 type ContentResponse struct {

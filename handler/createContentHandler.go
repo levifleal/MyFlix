@@ -23,7 +23,7 @@ func CreateContentHandler(ctx *gin.Context) {
 		Desc:         request.Desc,
 		ContentType:  request.ContentType,
 		Genre:        request.Genre,
-		RealeaseDate: request.ReleaseDate,
+		ReleaseDate: request.ReleaseDate,
 	}
 
 	if err := db.Create(&content).Error; err != nil {

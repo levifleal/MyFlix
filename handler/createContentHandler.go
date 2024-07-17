@@ -7,6 +7,18 @@ import (
 	"github.com/levifleal/MyFlix/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create Content
+// @Description Create a new Media Content
+// @Tags Media Contents
+// @Accept json
+// @Produce json
+// @Param request body CreateContentRequest true "Content data"
+// @Success 200 {object} CreateContentResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /Content [post]
 func CreateContentHandler(ctx *gin.Context) {
 	request := CreateContentRequest{}
 
@@ -19,10 +31,10 @@ func CreateContentHandler(ctx *gin.Context) {
 	}
 
 	content := schemas.Content{
-		Title:        request.Title,
-		Desc:         request.Desc,
-		ContentType:  request.ContentType,
-		Genre:        request.Genre,
+		Title:       request.Title,
+		Desc:        request.Desc,
+		ContentType: request.ContentType,
+		Genre:       request.Genre,
 		ReleaseDate: request.ReleaseDate,
 	}
 
@@ -30,8 +42,8 @@ func CreateContentHandler(ctx *gin.Context) {
 		logger.Errorf("error creating content: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error creating content on database")
 		return
-	} 
+	}
 
-	sendSuccess(ctx,"Create-Content",content)
+	sendSuccess(ctx, "Create-Content", content)
 
 }

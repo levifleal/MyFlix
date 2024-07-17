@@ -7,6 +7,20 @@ import (
 	"github.com/levifleal/MyFlix/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update Content
+// @Description Update a Media Content
+// @Tags Media Contents
+// @Accept json
+// @Produce json
+// @Param id query string true "Content Identification"
+// @Param request body updateContentRequest true "Content data"
+// @Success 200 {object} UpdateContentsResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /Content [put]
 func UpdateContentHandler(ctx *gin.Context) {
 	request := updateContentRequest{}
 

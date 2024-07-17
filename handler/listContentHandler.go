@@ -7,6 +7,16 @@ import (
 	"github.com/levifleal/MyFlix/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary List Contents
+// @Description list all Media Contents
+// @Tags Media Contents
+// @Accept json
+// @Produce json
+// @Success 200 {object} ListContentsResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /Contents [get]
 func ListContentsHandler(ctx *gin.Context) {
 	contents := []schemas.Content{}
 

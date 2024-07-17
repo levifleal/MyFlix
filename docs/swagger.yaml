@@ -1,4 +1,247 @@
+definitions:
+  contentHandler.CreateContentRequest:
+    properties:
+      contentType:
+        type: string
+      desc:
+        type: string
+      genre:
+        type: string
+      releaseDate:
+        type: string
+      title:
+        type: string
+    type: object
+  contentHandler.CreateContentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ContentResponse'
+      msg:
+        type: string
+    type: object
+  contentHandler.DeleteContentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ContentResponse'
+      msg:
+        type: string
+    type: object
+  contentHandler.ErrorResponse:
+    properties:
+      msg:
+        type: string
+    type: object
+  contentHandler.ListContentsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.ContentResponse'
+        type: array
+      msg:
+        type: string
+    type: object
+  contentHandler.ShowContentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ContentResponse'
+      msg:
+        type: string
+    type: object
+  contentHandler.UpdateContentsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.ContentResponse'
+        type: array
+      msg:
+        type: string
+    type: object
+  contentHandler.updateContentRequest:
+    properties:
+      contentType:
+        type: string
+      desc:
+        type: string
+      genre:
+        type: string
+      releaseDate:
+        type: string
+      title:
+        type: string
+    type: object
+  schemas.ContentResponse:
+    properties:
+      contentType:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      desc:
+        type: string
+      genre:
+        type: string
+      id:
+        type: integer
+      realeaseDate:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /Content:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a new Media Content
+      parameters:
+      - description: Content Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/contentHandler.DeleteContentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+      summary: Delete Content
+      tags:
+      - Media Contents
+    get:
+      consumes:
+      - application/json
+      description: Show a Media Content
+      parameters:
+      - description: Content Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/contentHandler.ShowContentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+      summary: Show Content
+      tags:
+      - Media Contents
+    post:
+      consumes:
+      - application/json
+      description: Create a new Media Content
+      parameters:
+      - description: Content data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/contentHandler.CreateContentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/contentHandler.CreateContentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+      summary: Create Content
+      tags:
+      - Media Contents
+    put:
+      consumes:
+      - application/json
+      description: Update a Media Content
+      parameters:
+      - description: Content Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Content data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/contentHandler.updateContentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/contentHandler.UpdateContentsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+      summary: Update Content
+      tags:
+      - Media Contents
+  /Contents:
+    get:
+      consumes:
+      - application/json
+      description: list all Media Contents
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/contentHandler.ListContentsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/contentHandler.ErrorResponse'
+      summary: List Contents
+      tags:
+      - Media Contents
 swagger: "2.0"

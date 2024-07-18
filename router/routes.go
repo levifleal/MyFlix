@@ -5,6 +5,7 @@ import (
 	docs "github.com/levifleal/MyFlix/docs"
 	"github.com/levifleal/MyFlix/handler"
 	"github.com/levifleal/MyFlix/handler/content"
+	"github.com/levifleal/MyFlix/handler/user"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -22,6 +23,7 @@ func initRoutes(r *gin.Engine) {
 		v1.DELETE("/Content", content.DeleteContentHandler)
 		v1.PUT("/Content", content.UpdateContentHandler)
 		v1.GET("/Contents", content.ListContentsHandler)
+		v1.POST("/User", user.CreateUserHandler)
 	}
 
 	//initialize Swagger

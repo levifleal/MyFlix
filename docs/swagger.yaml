@@ -1,5 +1,5 @@
 definitions:
-  contentHandler.CreateContentRequest:
+  content.CreateContentRequest:
     properties:
       contentType:
         type: string
@@ -12,26 +12,26 @@ definitions:
       title:
         type: string
     type: object
-  contentHandler.CreateContentResponse:
+  content.CreateContentResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.ContentResponse'
       msg:
         type: string
     type: object
-  contentHandler.DeleteContentResponse:
+  content.DeleteContentResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.ContentResponse'
       msg:
         type: string
     type: object
-  contentHandler.ErrorResponse:
+  content.ErrorResponse:
     properties:
       msg:
         type: string
     type: object
-  contentHandler.ListContentsResponse:
+  content.ListContentsResponse:
     properties:
       data:
         items:
@@ -40,14 +40,14 @@ definitions:
       msg:
         type: string
     type: object
-  contentHandler.ShowContentResponse:
+  content.ShowContentResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.ContentResponse'
       msg:
         type: string
     type: object
-  contentHandler.UpdateContentsResponse:
+  content.UpdateContentsResponse:
     properties:
       data:
         items:
@@ -56,7 +56,7 @@ definitions:
       msg:
         type: string
     type: object
-  contentHandler.updateContentRequest:
+  content.updateContentRequest:
     properties:
       contentType:
         type: string
@@ -110,19 +110,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contentHandler.DeleteContentResponse'
+            $ref: '#/definitions/content.DeleteContentResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
       summary: Delete Content
       tags:
       - Media Contents
@@ -142,19 +142,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contentHandler.ShowContentResponse'
+            $ref: '#/definitions/content.ShowContentResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
       summary: Show Content
       tags:
       - Media Contents
@@ -168,22 +168,22 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/contentHandler.CreateContentRequest'
+          $ref: '#/definitions/content.CreateContentRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contentHandler.CreateContentResponse'
+            $ref: '#/definitions/content.CreateContentResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
       summary: Create Content
       tags:
       - Media Contents
@@ -202,26 +202,26 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/contentHandler.updateContentRequest'
+          $ref: '#/definitions/content.updateContentRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contentHandler.UpdateContentsResponse'
+            $ref: '#/definitions/content.UpdateContentsResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
       summary: Update Content
       tags:
       - Media Contents
@@ -236,11 +236,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contentHandler.ListContentsResponse'
+            $ref: '#/definitions/content.ListContentsResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/contentHandler.ErrorResponse'
+            $ref: '#/definitions/content.ErrorResponse'
       summary: List Contents
       tags:
       - Media Contents

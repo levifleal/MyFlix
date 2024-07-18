@@ -1,16 +1,7 @@
 package handler
 
-import (
-	"github.com/levifleal/MyFlix/config"
-	"gorm.io/gorm"
-)
-
-var (
-	logger *config.Logger
-	db     *gorm.DB
-)
+import "github.com/levifleal/MyFlix/handler/content"
 
 func InitHandler() {
-	logger = config.GetLogger("[Handler]")
-	db = config.GetSQLite()
+	content.InitHandler()
 }

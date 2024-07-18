@@ -41,25 +41,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ShowContentResponse"
+                            "$ref": "#/definitions/content.ShowContentResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     }
                 }
@@ -90,7 +90,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.updateContentRequest"
+                            "$ref": "#/definitions/content.updateContentRequest"
                         }
                     }
                 ],
@@ -98,25 +98,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.UpdateContentsResponse"
+                            "$ref": "#/definitions/content.UpdateContentsResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     }
                 }
@@ -140,7 +140,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.CreateContentRequest"
+                            "$ref": "#/definitions/content.CreateContentRequest"
                         }
                     }
                 ],
@@ -148,19 +148,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.CreateContentResponse"
+                            "$ref": "#/definitions/content.CreateContentResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     }
                 }
@@ -190,25 +190,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.DeleteContentResponse"
+                            "$ref": "#/definitions/content.DeleteContentResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     }
                 }
@@ -231,13 +231,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ListContentsResponse"
+                            "$ref": "#/definitions/content.ListContentsResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/contentHandler.ErrorResponse"
+                            "$ref": "#/definitions/content.ErrorResponse"
                         }
                     }
                 }
@@ -245,7 +245,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "contentHandler.CreateContentRequest": {
+        "content.CreateContentRequest": {
             "type": "object",
             "properties": {
                 "contentType": {
@@ -265,7 +265,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.CreateContentResponse": {
+        "content.CreateContentResponse": {
             "type": "object",
             "properties": {
                 "data": {
@@ -276,7 +276,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.DeleteContentResponse": {
+        "content.DeleteContentResponse": {
             "type": "object",
             "properties": {
                 "data": {
@@ -287,7 +287,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.ErrorResponse": {
+        "content.ErrorResponse": {
             "type": "object",
             "properties": {
                 "msg": {
@@ -295,7 +295,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.ListContentsResponse": {
+        "content.ListContentsResponse": {
             "type": "object",
             "properties": {
                 "data": {
@@ -309,7 +309,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.ShowContentResponse": {
+        "content.ShowContentResponse": {
             "type": "object",
             "properties": {
                 "data": {
@@ -320,7 +320,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.UpdateContentsResponse": {
+        "content.UpdateContentsResponse": {
             "type": "object",
             "properties": {
                 "data": {
@@ -334,7 +334,7 @@ const docTemplate = `{
                 }
             }
         },
-        "contentHandler.updateContentRequest": {
+        "content.updateContentRequest": {
             "type": "object",
             "properties": {
                 "contentType": {

@@ -30,6 +30,7 @@ func ShowContentHandler(ctx *gin.Context) {
 
 	if err := db.First(&content, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "content not found")
+		return
 	}
 
 	sendSuccess(ctx, "show-Content", content)

@@ -22,6 +22,7 @@ func ListContentsHandler(ctx *gin.Context) {
 
 	if err := db.Find(&contents).Error; err != nil {
 		sendError(ctx, http.StatusInternalServerError, "error listing contents")
+		return
 	}
 
 	sendSuccess(ctx, "list-content", contents)

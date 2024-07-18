@@ -2,8 +2,11 @@ package user
 
 import (
 	"net/http"
+	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/levifleal/MyFlix/schemas"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -25,12 +28,14 @@ func CreateUserHandler(ctx *gin.Context) {
 
 	ctx.BindJSON(&request)
 
+	//validating user input
 	if err := request.Validate(); err != nil {
 		logger.Errorf("Validation Error: %v", err.Error())
 		sendError(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
+	//encriping password
 	hashPass, err := hashPassword(request.Password)
 	if err != nil {
 		logger.Error("error crypting password")
@@ -44,17 +49,44 @@ func CreateUserHandler(ctx *gin.Context) {
 		Password: hashPass,
 	}
 
+	// creating user in database
 	if err := db.Create(&user).Error; err != nil {
 		logger.Errorf("error creating content: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error creating content on database")
 		return
 	}
 
-	sendSuccess(ctx, "Create-Content", user)
-
+	//generating token
+	token, err := newJwt(&user)
+	if err != nil {
+		logger.Errorf("error generating token: %v", err.Error())
+		return
+	}
+	sendSuccess(ctx, "create-user", token)
 }
 
-func hashPassword(pass string) (hashPass string, err error) {
+// encript password with bcrypt
+func hashPassword(pass string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(pass), 14)
 	return string(bytes), err
+}
+
+func newJwt(data *schemas.User) (string, error) {
+	key := []byte(os.Getenv("JWT_SECRET"))
+
+	//generating token
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"name":  data.Name,
+		"email": data.Email,
+		"exp":   time.Now().Add(time.Hour * 24),
+	})
+
+	//signing token
+	token, err := t.SignedString(key)
+	if err != nil {
+		return "", err
+	}
+
+	return token, nil
+
 }

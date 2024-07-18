@@ -16,3 +16,6 @@
 # DB folder
 
 /db
+
+#Env variables
+.env

@@ -2,7 +2,9 @@ package config
 
 import (
 	"fmt"
+	"log"
 
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
@@ -14,16 +16,22 @@ var (
 func Init() error {
 	var err error
 
+	//initialize dotEnv
+	err = godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
 	//initialize sqlite
-	db,err = initSQLite()
-	if err != nil{
-		return fmt.Errorf("error initializating sqlite: %v",err)
+	db, err = initSQLite()
+	if err != nil {
+		return fmt.Errorf("error initializating sqlite: %v", err)
 	}
 
 	return nil
 }
 
-func GetSQLite() *gorm.DB{
+func GetSQLite() *gorm.DB {
 	return db
 }
 

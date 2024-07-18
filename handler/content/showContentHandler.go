@@ -28,7 +28,7 @@ func ShowContentHandler(ctx *gin.Context) {
 	}
 	content := schemas.Content{}
 
-	if err := db.First(&content).Error; err != nil {
+	if err := db.First(&content, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "content not found")
 	}
 

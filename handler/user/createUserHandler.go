@@ -11,7 +11,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// @BasePath /api/v1
+// @BasePath /api/v1/Auth
 
 // @Summary Create User
 // @Description Create a new User
@@ -22,7 +22,7 @@ import (
 // @Success 200 {object} CreateUserResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
-// @Router /User [post]
+// @Router /signUp [post]
 func CreateUserHandler(ctx *gin.Context) {
 	request := CreateUserRequest{}
 
@@ -62,6 +62,8 @@ func CreateUserHandler(ctx *gin.Context) {
 		logger.Errorf("error generating token: %v", err.Error())
 		return
 	}
+
+	
 	sendSuccess(ctx, "create-user", token)
 }
 

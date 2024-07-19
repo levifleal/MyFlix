@@ -90,6 +90,56 @@ definitions:
       updatedAt:
         type: string
     type: object
+  schemas.UserResponse:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  user.CreateUserRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  user.CreateUserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.UserResponse'
+      msg:
+        type: string
+    type: object
+  user.ErrorResponse:
+    properties:
+      msg:
+        type: string
+    type: object
+  user.LoginUserRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  user.LoginUserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.UserResponse'
+      msg:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -244,4 +294,64 @@ paths:
       summary: List Contents
       tags:
       - Media Contents
+  /SignIn:
+    post:
+      consumes:
+      - application/json
+      description: Login user
+      parameters:
+      - description: User data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.LoginUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.LoginUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.ErrorResponse'
+      summary: SignIn User
+      tags:
+      - Users
+  /SignUp:
+    post:
+      consumes:
+      - application/json
+      description: Create a new User
+      parameters:
+      - description: User data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.CreateUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.ErrorResponse'
+      summary: Create User
+      tags:
+      - Users
 swagger: "2.0"

@@ -22,7 +22,7 @@ import (
 // @Success 200 {object} CreateUserResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
-// @Router /signUp [post]
+// @Router /SignUp [post]
 func CreateUserHandler(ctx *gin.Context) {
 	request := CreateUserRequest{}
 
@@ -60,10 +60,11 @@ func CreateUserHandler(ctx *gin.Context) {
 	token, err := newJwt(&user)
 	if err != nil {
 		logger.Errorf("error generating token: %v", err.Error())
+		sendError(ctx, http.StatusInternalServerError, "error generating token")
 		return
 	}
 
-	
+
 	sendSuccess(ctx, "create-user", token)
 }
 

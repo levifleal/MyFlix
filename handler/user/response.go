@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/levifleal/MyFlix/schemas"
 )
 
 func sendError(ctx *gin.Context, code int, msg string) {
@@ -20,4 +21,16 @@ func sendSuccess(ctx *gin.Context, op string, data interface{}) {
 		"msg":  fmt.Sprintf("success operation from handler: %s", op),
 		"data": data,
 	})
+}
+
+type ErrorResponse struct {
+	Message string `json:"msg"`
+}
+type CreateUserResponse struct {
+	Message string               `json:"msg"`
+	Data    schemas.UserResponse `json:"data"`
+}
+type LoginUserResponse struct {
+	Message string               `json:"msg"`
+	Data    schemas.UserResponse `json:"data"`
 }

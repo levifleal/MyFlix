@@ -8,6 +8,19 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+
+// @BasePath /api/v1/Auth
+
+// @Summary SignIn User
+// @Description Login user
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param request body LoginUserRequest true "User data"
+// @Success 200 {object} LoginUserResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /SignIn [post]
 func LoginUserHandler(ctx *gin.Context) {
 	request := LoginUserRequest{}
 

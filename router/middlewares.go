@@ -21,9 +21,11 @@ func AuthMiddleware() gin.HandlerFunc {
 			})
 			return
 		}
+		//verify if the token is valid
 		validator := jwt.NewParser(jwt.WithExpirationRequired())
 		_, _, err := validator.ParseUnverified(token, jwt.MapClaims{})
 		if err != nil {
+			logger.Errorf("error validating token: %v", err)
 			ctx.Header("content-type", "application/json")
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"msg": fmt.Sprint(err),
